@@ -1,0 +1,153 @@
+---
+output:
+  word_document: default
+  html_document: default
+---
+## This is YAML header  
+
+---
+title: "R Markdown Tutorial"
+author: "Vlad Krotov"
+date: "2/24/2020"
+output: word_document
+---
+
+## Installing 'rmarkdown' Package
+
+```{r pressure, eval=FALSE}
+install.packages("rmarkdown")
+install.packages("knitr")
+library(rmarkdown)
+library(knitr)
+```
+
+
+#Seting global options:
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Note that the code above will not be run or evaluated
+due to "include=FALSE" option
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressureplot, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Code Chunk Parameters
+
+There are many other paramaters for code chunks:
+
+Rule          | Example          | Function
+     
+eval	          eval=TRUE          Is the code run and the results included in the output?
+include	        include=TRUE	     Are the code and the results included in the output?
+echo	          echo=TRUE	         Is the code displayed alongside the results?
+warning	        warning=TRUE	     Are warning messages displayed?
+error	          error=FALSE	       Are error messages displayed?
+message	        message=TRUE	     Are messages displayed?
+tidy	          tidy=FALSE	       Is the code reformatted to make it look “tidy”?
+results	        results="markup"	 How are results treated?
+                                   "hide" = no results
+                                   "asis" = results without formatting
+                                   "hold" = results only compiled at end of chunk 
+                                            (use if many commands act on one object)
+cache	          cache=FALSE	       Are the results cached for future renders?
+comment	        comment="##"	     What character are comments prefaced with?
+fig.width       fig.width=7        What width (in inches) are the plots?  
+fig.height	    fig.height=5       What height (in inches) are the plots?
+fig.align	      fig.align="left"	 How is figure aligned? Can be "left" "right" "center"
+
+## Inserting Figures
+
+```{r, fig.width = 7, fig.height = 5}
+A <- c(1, 2, 3, 4)
+B <- c(5, 10, 15, 20)
+df <- data.frame(A, B)
+plot(df)
+```
+
+## Inserting Tables
+
+You can just print a dataframe instead of a table
+
+```{r carstable}
+cars
+```
+
+Or you can use kable function:
+
+```{r echo = FALSE }
+library(knitr)
+kable(df, digits = 2)
+```
+
+You can create a table manually using R Markdown: 
+
+| Plant | Temp. | Growth |
+|:------|:-----:|-------:|
+| A     | 20    | 0.65   |
+| B     | 20    | 0.95   |
+| C     | 20    | 0.15   |
+
+Here's the syntax for alignment:
+
+`:----:`	Centre
+`:-----`	Left
+`-----:`	Right
+`------`	Auto
+
+Tables can also be created using 'stargazer'package
+
+```{r}
+library(stargazer)
+stargazer(attitude, type = "html")
+```
+
+## Other Elements of R Syntax
+
+*Italic*
+
+**Bold**
+
+Bold
+
+This is `code` in text
+
+
+# Header 1
+
+## Header 2
+
+Note that when a # symbol is placed inside a code chunk it acts as a normal R comment, but when placed in text it controls the header size.
+
+* Unordered list item
+
+1. Ordered list item
+
+
+[Link](https://www.google.com)
+
+
+
+$A = \pi \times r^{2}$
+
